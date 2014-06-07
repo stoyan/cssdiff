@@ -9,8 +9,8 @@ For convenient testing of CSS code transforms
 The tool accepts an HTML file and two CSS files: the original before your code transformation
 and the result of the transformation.
 
-Then it uses [PhantomJS](http://phantomjs.org/) and [SlimerJS](http://slimerjs.org/) to load the HTML file twice: once inlining the "before" CSS
-and once with the "after" CSS. The CSS is inlined in a `<style>` tag.
+Then it uses [PhantomJS](http://phantomjs.org/) and [SlimerJS](http://slimerjs.org/) to load the HTML file twice:
+once inlining the "before" CSS and once with the "after" CSS. The CSS is inlined in a `<style>` tag.
 
 The HTML is stripped of tags such as `iframe` and `script` that can potentially skew the visual comparison
 by injecting dynamic content.
@@ -66,4 +66,4 @@ cssdiff('index.html', 'before.css', 'after.css', function(result, msg) {
 Background:
 
  * http://www.phpied.com/css-diff/
- * http://www.phpied.com/css-diffs-2/  
+ * http://www.phpied.com/css-diffs-2/
