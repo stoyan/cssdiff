@@ -1,0 +1,26 @@
+{
+  "name": "cssdiff",
+  "version": "0.0.1",
+  "description": "Before-and-After Assertion for CSS",
+  "keywords": [
+    "css",
+    "transform",
+    "browser",
+    "testing"
+  ],
+  "author": "Stoyan <ssttoo@ymail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stoyan/cssdiff.git"
+  },
+  "depenencies": {
+    "jsdom": "*",
+    "pngparse": "*",
+    "sprintf": "*",
+    "uuid": "*"
+  },
+  "bin": {
+    "cssdiff": "./bin/cli.js"
+  },
+  "main": "index"
+}

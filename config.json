@@ -1,0 +1,5 @@
+{
+  "phantomjs": "phantomjs",
+  "slimerjs": "slimerjs",
+  "imagick": "convert"
+}
