@@ -16,6 +16,7 @@ function same(b, a, id, cb) {
   var oks = 0;
   var pre = config.tmp + id;
   var cleanup = [];
+  var phantom = '%s %s/url2png.js "%s" "%s"';
 
   tools.forEach(function(tool) {
     var before = pre + '-before-' + tool.name + '.png';
@@ -24,15 +25,15 @@ function same(b, a, id, cb) {
 
     cleanup = cleanup.concat([before, after]);
 
-    var before_cmd = sprintf('%s %s/url2png.js "%s" %s',
+    var before_cmd = sprintf(phantom,
       tool.path,
       __dirname,
-      b,
+      addProtocol(b),
       before);
-    var after_cmd = sprintf('%s %s/url2png.js "%s" %s',
+    var after_cmd = sprintf(phantom,
       tool.path,
       __dirname,
-      a,
+      addProtocol(a),
       after);
     var giff_cmd = config.imagick && sprintf('%s -delay 50 -loop 0 %s %s %s',
       config.imagick,
@@ -62,6 +63,11 @@ function same(b, a, id, cb) {
       });
     });
   });
+}
+
+function addProtocol(file) {
+  var proto = file.charAt(0) !== '/' ? 'file:///' : 'file://'
+  return proto + file;
 }
 
 function sameImage(image_a, image_b, cb) {
@@ -163,7 +169,7 @@ module.exports = function(conf) {
       } else {
         var cleanup = debug.cleanup.concat([before_html, after_html]);
         cleanup.forEach(function(filename) {
-          //fs.unlink(filename);
+          fs.unlink(filename);
         });
         var verbose = sprintf('All good with %s and %s and %s', html, css_b, css_a);
         cb(true, verbose);

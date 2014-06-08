@@ -1,5 +1,5 @@
 {
   "phantomjs": "phantomjs",
-  "slimerjs": "slimerjs",
+  "slimerjs": "~/Downloads/slimerjs/slimerjs ",
   "imagick": "convert"
 }

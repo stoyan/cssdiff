@@ -9,4 +9,3 @@ cssdiff('zen.html', 'before.css', 'before.css', function(result, msg) {
 cssdiff('zen.html', 'before.css', 'after.css', function(result, msg) {
   console.log(msg);
 });
-
