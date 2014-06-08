@@ -19,6 +19,9 @@ The results of rendering the two HTML files are saved to two PNGs which are then
 
 If they are different, a GIF animation is also created to help debug.
 
+Finally, the "before" and "after" CSS files are copied, prettified, comment-stripped and sent to your
+favorite diffing app so you can easily see what changed in the CSS.
+
 ## Installation
 
     $ npm install cssdiff
@@ -36,15 +39,16 @@ There is a `config.json` where you can fiddle with (or delete) the paths to the 
 
 ```js
 var cssdiff = require('../index.js');
-cssdiff('index.html', 'before.css', 'after.css', function(result, msg) {
+cssdiff('index.html', 'before.css', 'after.css', function(result, msg, diff) {
   console.log(result); // `true` if all is fine
   console.log(msg); // verbose message to help debug
+  // `diff` is the command you can execute to launch a diff program
 });
 ```
 
 ### Command line:
 
-    $ cssdiff index.html before.css after.css
+    $ cssdiff index.html before.css after.css diff
 
 #### Example success output
 
@@ -60,6 +64,8 @@ cssdiff('index.html', 'before.css', 'after.css', function(result, msg) {
      * Screenshot before: /path/to/tmp/ec2af394-984d-4bac-b9fb-92b4461fda1b-before-webkit.png
      * Screenshot after: /path/to/tmp/ec2af394-984d-4bac-b9fb-92b4461fda1b-after-webkit.png
      * Gif animation: /path/to/tmp/ec2af394-984d-4bac-b9fb-92b4461fda1bwebkit.gif
+     * CSS diff: "/Applications/DiffMerge" "path/to/tmp/3ef804f6-9496-4020-8193-b13f3d0a3255-before.css" "/path/to/tmp/3ef804f6-9496-4020-8193-b13f3d0a3255-after.css"
+
 
 ## More
 
