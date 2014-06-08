@@ -20,7 +20,8 @@ The results of rendering the two HTML files are saved to two PNGs which are then
 If they are different, a GIF animation is also created to help debug.
 
 Finally, the "before" and "after" CSS files are copied, prettified, comment-stripped and sent to your
-favorite diffing app so you can easily see what changed in the CSS.
+favorite diffing app so you can easily see what changed in the CSS. The prettification is done with the 
+[Mensch](https://github.com/brettstimmerman/mensch) CSS parser/stringifier
 
 ## Installation
 
