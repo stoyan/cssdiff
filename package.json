@@ -1,6 +1,6 @@
 {
   "name": "cssdiff",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Before-and-After Assertion for CSS",
   "keywords": [
     "css",
