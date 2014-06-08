@@ -1,5 +1,6 @@
 {
   "phantomjs": "phantomjs",
   "slimerjs": "~/Downloads/slimerjs/slimerjs ",
-  "imagick": "convert"
+  "imagick": "convert",
+  "diff": "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
 }

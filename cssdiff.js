@@ -1,6 +1,7 @@
 var exec = require('child_process').exec;
 var fs = require('fs');
 var jsdom = require('jsdom');
+var mensch = require('mensch');
 var path = require('path');
 var pngparse = require('pngparse');
 var sprintf = require('sprintf').sprintf;
@@ -122,6 +123,19 @@ function writeTestFile(name, html, css) {
   write(name, d.documentElement.outerHTML);
 }
 
+function writeCSSDiff(b, a, path) {
+  var before = mensch.parse(b, {comments: false});
+  var after =  mensch.parse(a, {comments: false});
+  write(path + "-before.css", mensch.stringify(before, {indentation: '  '}));
+  write(path + "-after.css", mensch.stringify(after, {indentation: '  '}));
+  
+  return sprintf('"%s" "%s" "%s"',
+    config.diff,
+    path + "-before.css",
+    path + "-after.css"
+  );
+}
+
 module.exports = function(conf) {
   config = conf;
   config.tmp = config.tmp || process.env.TMPDIR;
@@ -163,8 +177,12 @@ module.exports = function(conf) {
           verbose.push(' * Gif animation: ' + debug.gif);
         }
 
-        // todo: pretty css diff...
-        cb(false, verbose.join('\n'))
+        if (config.diff) {
+          var diffcmd = writeCSSDiff(before_css, after_css, conf.tmp + id);
+          verbose.push(' * CSS diff: ' + diffcmd);
+        }
+
+        cb(false, verbose.join('\n'), diffcmd);
 
       } else {
         var cleanup = debug.cleanup.concat([before_html, after_html]);

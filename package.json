@@ -1,6 +1,6 @@
 {
   "name": "cssdiff",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Before-and-After Assertion for CSS",
   "keywords": [
     "css",
@@ -17,7 +17,8 @@
     "jsdom": "*",
     "pngparse": "*",
     "sprintf": "*",
-    "uuid": "*"
+    "uuid": "*",
+    "mensch": "*"
   },
   "bin": {
     "cssdiff": "./bin/cli.js"
