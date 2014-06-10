@@ -106,7 +106,7 @@ function sameImage(image_a, image_b, cb) {
 
 function writeTestFile(name, html, css) {
   var d = jsdom.html(html);
-  var stripem = 'style, iframe, object, embed, link, script';
+  var stripem = 'style, iframe, object, embed, link, script, noscript';
   [].slice.call(d.querySelectorAll(stripem)).forEach(function(node) {
     if (node.parentNode) {
       node.parentNode.removeChild(node);
@@ -123,6 +123,11 @@ function writeTestFile(name, html, css) {
   var style = d.createElement('style');
   style.textContent = css;
   h.appendChild(style);
+
+  // prevent one more JS execution opportunity
+  if (d.body) {
+    d.body.removeAttribute('onload');
+  }
 
   write(name, d.documentElement.outerHTML);
 }

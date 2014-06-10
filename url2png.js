@@ -1,11 +1,14 @@
 var system = require('system');
+var exists = require('fs').exists;
+
 var url = system.args[1];
 var png = system.args[2];
 
 var page = require('webpage').create();
 page.settings.javascriptEnabled = false;
 page.settings.loadImages = false;
-page.viewportSize = { width: 800, height: 600 };
+// most pop resolution http://en.wikipedia.org/wiki/Display_resolution#Computer_monitors
+page.viewportSize = { width: 1366, height: 768 };
 
 // don't download external resources so to minimize noise
 // e.g. random images, ads
@@ -22,6 +25,13 @@ page.open(url, function (status) {
     console.log('Unable to access the network!');
   } else {
     page.render(png);
+
+    if (!exists(png)) {
+      // try a part of the page
+      // slimerJS fails on very long pages
+      page.clipRect = { top: 0, left: 0, width: 1366, height: 27320 };
+      page.render(png);
+    }
   }
   phantom.exit();
 });
