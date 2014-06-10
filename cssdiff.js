@@ -13,6 +13,10 @@ var write = fs.writeFileSync;
 var config;
 var tools = [];
 
+jsdom.defaultDocumentFeatures = {
+  FetchExternalResources: false,
+};
+
 function same(b, a, id, cb) {
   var oks = 0;
   var pre = config.tmp + id;

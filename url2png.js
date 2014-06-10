@@ -3,6 +3,8 @@ var url = system.args[1];
 var png = system.args[2];
 
 var page = require('webpage').create();
+page.settings.javascriptEnabled = false;
+page.settings.loadImages = false;
 page.viewportSize = { width: 800, height: 600 };
 
 // don't download external resources so to minimize noise
